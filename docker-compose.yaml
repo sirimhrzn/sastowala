@@ -1,0 +1,36 @@
+version: '2.20'
+services:
+  mysqlx:
+    image: mysql:8.1.0
+    container_name: mysqlx
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: siri
+      MYSQL_DATABASE: compare
+      MYSQL_USER: siri
+      MYSQL_PASSWORD: siri
+    volumes:
+      - mysql_data:/var/lib/mysql
+  project1:
+    build: .
+    container_name: backend
+    restart: always
+    ports:
+      - "8010:3000"
+    depends_on:
+      - mysqlx
+    environment:
+      DB_USERNAME: root
+      DB_PASSWORD: siri
+      DB_NAME: compare
+      DB_HOST: mysqlx
+      DB_PORT: 3306
+      SERVER_ADDRESS: 0.0.0.0
+      SERVER_PORT: 3000
+
+volumes:
+  mysql_data:
+    driver: local
+  
