@@ -1,6 +1,7 @@
 mod database;
 mod error;
 mod handler;
+mod service;
 use axum::{routing::get, Router};
 use database::database::{db_connection, DBstate};
 use handler::handler::darazv1;

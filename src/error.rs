@@ -3,13 +3,13 @@ use axum::{http::StatusCode, response::IntoResponse};
 use serde::Deserialize;
 use serde_json::json;
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 
 pub struct ErrorResponse {
     pub message: String,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 
 pub enum CustomError {
     JsonParseFail,
@@ -29,9 +29,9 @@ impl IntoResponse for CustomError {
                 "Failed to create file".to_string(),
                 StatusCode::EXPECTATION_FAILED,
             ),
-            Self::FileReadFailed=>(
+            Self::FileReadFailed => (
                 "Failed to read file".to_string(),
-                StatusCode::INTERNAL_SERVER_ERROR
+                StatusCode::INTERNAL_SERVER_ERROR,
             ),
             Self::CustomMessage(e) => (e.message, StatusCode::EXPECTATION_FAILED),
         };
