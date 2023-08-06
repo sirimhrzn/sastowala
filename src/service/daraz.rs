@@ -46,7 +46,8 @@ impl DarazActions {
                 "image_url": item.get("image"),
                 "rating_score": item.get("ratingScore"),
                 "free_shipping": maplog_exists.get("isFreeShipping"),
-                "original_price": maplog_exists.get("originalPrice")
+                "original_price": maplog_exists.get("originalPrice"),
+                "vendor":"daraz"
             });
             arr.push(resp)
         }

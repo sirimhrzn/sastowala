@@ -29,6 +29,7 @@ services:
       DB_PORT: 3306
       SERVER_ADDRESS: 0.0.0.0
       SERVER_PORT: 3000
+      API_KEY: 09BECB8F84BCB7A1796AB12B98C1FB9E
 
 volumes:
   mysql_data:
